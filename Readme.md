@@ -22,6 +22,12 @@ message2 可以读取到数据
 
 https://cloud.spring.io/spring-cloud-config/reference/html/#_quick_start
 
+where application is injected as the spring.config.name in the SpringApplication (what is normally application in a regular Spring Boot app),
+
+profile is an active profile (or comma-separated list of properties), 
+
+and label is an optional git label (defaults to master.)
+
 The default strategy for locating property sources is to clone a git repository (at spring.cloud.config.server.git.uri) and use it to initialize a mini SpringApplication. The mini-application’s Environment is used to enumerate property sources and publish them at a JSON endpoint.
 
 The HTTP service has resources in the following form:
