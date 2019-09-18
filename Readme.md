@@ -27,8 +27,12 @@ The default strategy for locating property sources is to clone a git repository 
 The HTTP service has resources in the following form:
 
 /{application}/{profile}[/{label}]
+
 /{application}-{profile}.yml
+
 /{label}/{application}-{profile}.yml
+
 /{application}-{profile}.properties
+
 /{label}/{application}-{profile}.properties
 
