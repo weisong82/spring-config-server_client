@@ -2,6 +2,9 @@
  spring.cloud.config.server.git.uri 指定git配置的路径；
  spring.cloud.config.server.git.username password - git权限指定
  
+  访问可以提取配置属性
+ http://localhost:8888/jdbc/samplebackendservice/default
+ 
 # client 配置
 1. bootstrap.properties 指定application的名字，对应到git上读取的文件
 2. bootstrap.properties 指定需要读取的配置server url
@@ -47,3 +50,10 @@ JDBC Backend
 Spring Cloud Config Server supports JDBC (relational database) as a backend for configuration properties. You can enable this feature by adding spring-jdbc to the classpath and using the jdbc profile or by adding a bean of type JdbcEnvironmentRepository. If you include the right dependencies on the classpath (see the user guide for more details on that), Spring Boot configures a data source.
 
 The database needs to have a table called PROPERTIES with columns called APPLICATION, PROFILE, and LABEL (with the usual Environment meaning), plus KEY and VALUE for the key and value pairs in Properties style. All fields are of type String in Java, so you can make them VARCHAR of whatever length you need. Property values behave in the same way as they would if they came from Spring Boot properties files named {application}-{profile}.properties, including all the encryption and decryption, which will be applied as post-processing steps (that is, not in the repository implementation directly).
+
+DB 属性对null是不太友好的 - 不给label通常也会取不到
+http://localhost:8888/jdbc/samplebackendservice/default/master 
+
+id  key    value       application         label profile
+
+1	bar	db-value	samplebackendservice	master	default
