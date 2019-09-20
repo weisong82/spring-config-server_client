@@ -2,8 +2,7 @@
  spring.cloud.config.server.git.uri 指定git配置的路径；
  spring.cloud.config.server.git.username password - git权限指定
  
-  访问可以提取配置属性
- http://localhost:8888/jdbc/samplebackendservice/default
+
  
 # client 配置
 1. bootstrap.properties 指定application的名字，对应到git上读取的文件
