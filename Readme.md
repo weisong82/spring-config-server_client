@@ -46,7 +46,7 @@ The HTTP service has resources in the following form:
 /{label}/{application}-{profile}.properties
 
 # 其他
-JDBC Backend
+JDBC Backend  --修改后sql是可以及时查询到变更的
 Spring Cloud Config Server supports JDBC (relational database) as a backend for configuration properties. You can enable this feature by adding spring-jdbc to the classpath and using the jdbc profile or by adding a bean of type JdbcEnvironmentRepository. If you include the right dependencies on the classpath (see the user guide for more details on that), Spring Boot configures a data source.
 
 The database needs to have a table called PROPERTIES with columns called APPLICATION, PROFILE, and LABEL (with the usual Environment meaning), plus KEY and VALUE for the key and value pairs in Properties style. All fields are of type String in Java, so you can make them VARCHAR of whatever length you need. Property values behave in the same way as they would if they came from Spring Boot properties files named {application}-{profile}.properties, including all the encryption and decryption, which will be applied as post-processing steps (that is, not in the repository implementation directly).
@@ -57,3 +57,10 @@ http://localhost:8888/jdbc/samplebackendservice/default/master
 id  key    value       application         label profile
 
 1	bar	db-value	samplebackendservice	master	default
+
+# 配置的更新
+ Config Server——使用Spring Cloud Bus自动刷新配置
+
+ 手动刷新：
+  client 侧： post请求 http://localhost:8080/actuator/refresh  （DB侧直接刷，不需要server改造）
+  server 侧： get请求 http://localhost:8888/actuator/refresh
