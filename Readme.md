@@ -1,3 +1,23 @@
+# 运行
+含有两个springboots项目：
+
+1. configuration-service  config server端， 先运行起来。
+主要的配置在application.properties
+增加依赖：
+`		<dependency>
+ 			<groupId>org.springframework.cloud</groupId>
+ 			<artifactId>spring-cloud-config-server</artifactId>
+ 		</dependency>
+`
+
+2. configuration-client client端，启动后会去config server拉变量配置，
+主要的配置在bootstrap.properties这里，
+增加依赖：
+`		<dependency>
+ 			<groupId>org.springframework.cloud</groupId>
+ 			<artifactId>spring-cloud-starter-config</artifactId>
+ 		</dependency>
+`
 # server配置
  spring.cloud.config.server.git.uri 指定git配置的路径；
  spring.cloud.config.server.git.username password - git权限指定
