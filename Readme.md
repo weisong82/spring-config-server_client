@@ -45,29 +45,8 @@ message2 可以读取到数据
 message
 message2 
 
-# doc 配置文件查找思路：
-
+# doc 配置文件查找思路：-针对git 和文件系统
 https://cloud.spring.io/spring-cloud-config/reference/html/#_quick_start
-
-where application is injected as the spring.config.name in the SpringApplication (what is normally application in a regular Spring Boot app),
-
-profile is an active profile (or comma-separated list of properties), 
-
-and label is an optional git label (defaults to master.)
-
-The default strategy for locating property sources is to clone a git repository (at spring.cloud.config.server.git.uri) and use it to initialize a mini SpringApplication. The mini-application’s Environment is used to enumerate property sources and publish them at a JSON endpoint.
-
-The HTTP service has resources in the following form:
-
-/{application}/{profile}[/{label}]
-
-/{application}-{profile}.yml
-
-/{label}/{application}-{profile}.yml
-
-/{application}-{profile}.properties
-
-/{label}/{application}-{profile}.properties
 
 # 其他
 JDBC Backend  --修改后sql是可以及时查询到变更的
@@ -84,7 +63,9 @@ id  key    value       application         label profile
 
 # 配置的更新
  Config Server——使用Spring Cloud Bus自动刷新配置
-
  手动刷新：
   client 侧： post请求 http://localhost:8080/actuator/refresh  （DB侧直接刷，不需要server改造）
   server 侧： get请求 http://localhost:8888/actuator/refresh
+  
+# server配置获取：
+ http://localhost:8888/samplebackendservice/default/master  （db场景下无需刷新，会读取最新值）  

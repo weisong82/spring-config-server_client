@@ -1,3 +1,4 @@
 target\
-target\
-target\
+configuration-client/target
+configuration-service/target
+.idea
