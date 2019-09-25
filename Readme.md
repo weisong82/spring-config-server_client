@@ -18,6 +18,8 @@
  			<artifactId>spring-cloud-starter-config</artifactId>
  		</dependency>
 `
+3. DB初始化脚本，参考properties.sql
+
 # server配置
  spring.cloud.config.server.git.uri 指定git配置的路径；
  spring.cloud.config.server.git.username password - git权限指定
@@ -29,18 +31,20 @@
 1. bootstrap.properties 指定application的名字，对应到git上读取的文件
 2. bootstrap.properties 指定需要读取的配置server url
 
-# run 带profile参数启动：
- c.e.c.ConfigurationClientApplication     : The following profiles are active: development
-
-两个接口都可以获取到属性-配置有继承
-message
-message2 
 
 # run 不带profile启动:
  c.c.c.ConfigServicePropertySourceLocator : Located environment: name=samplebackendservice, profiles=[default], label=null, version=bb51f4173258ae3481c61b95b503c13862ccfba7, state=null
 
 message 接口是读不到数据的
 message2 可以读取到数据
+
+# run 带profile参数启动：
+ c.e.c.ConfigurationClientApplication     : The following profiles are active: development
+
+配置有继承（default active的属性，总是可以被其他active的继承）-两个接口都可以获取到属性-
+message
+message2 
+
 # doc 配置文件查找思路：
 
 https://cloud.spring.io/spring-cloud-config/reference/html/#_quick_start
